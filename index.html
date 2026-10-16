@@ -2,13 +2,548 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Freelance Yachting · Freelance Yachting</title>
-<link rel="canonical" href="https://aberaouni.github.io/freelance-yachting-services/chart-room/">
-<meta http-equiv="refresh" content="0; url=https://aberaouni.github.io/freelance-yachting-services/chart-room/">
-<meta name="robots" content="noindex">
-<style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#050b14;color:#eef1f4;font:16px/1.6 "Helvetica Neue",Arial,sans-serif;text-align:center;padding:24px}a{color:#ecd7ad}</style>
-<script>location.replace('https://aberaouni.github.io/freelance-yachting-services/chart-room/');</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Free Yacht CV Workshop · Freelance Yachting</title>
+<meta name="description" content="Build a yacht crew CV the way captains read it: target role, dated certificates, sea service table. Free, and nothing leaves your device.">
+<meta property="og:title" content="The yacht CV, built the way captains read">
+<meta property="og:description" content="Free CV workshop for yacht crew by Freelance Yachting.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=DM+Mono:wght@400;500&family=Hanken+Grotesk:wght@400;500;600&display=swap">
+<style>
+:root{
+  /* Layout: the CV workshop of The Chart Room. Night header and intro, then the workspace on lit ice:
+     the editor as a royal-blue card on the left, the live A4 CV on the right, printed as a real-text PDF.
+     One deliberate look, not theme-switched. */
+  --ink:#050b14; --night:#08131f; --deep:#0d1c2e; --navy:#16365f; --royal:#1d4475; --royal-2:#122d52;
+  --pearl:#eef1f4; --fog:#a6b1be; --mute:#748193; --hair:rgba(238,241,244,.13); --hair-2:rgba(238,241,244,.26);
+  --brass:#c9a873; --brass-hi:#ecd7ad; --brass-lo:#8a6a3e; --glacier:#8fe0fb;
+  --paper:#ffffff; --text:#14202f; --sub:#566273; --line:#dde2e8; --tint:#f1f5f9;
+  --display:"Bodoni Moda","Bodoni 72",Didot,Georgia,serif;
+  --sans:"Hanken Grotesk","Helvetica Neue",Arial,sans-serif;
+  --mono:"DM Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  --ease:cubic-bezier(.2,.7,.2,1);
+  --gut:clamp(16px,3vw,40px); --hdr:64px;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--ink);color:var(--pearl);font:400 16px/1.55 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:clip}
+body.locked{overflow:hidden}
+[hidden]{display:none!important}
+h1,h2,h3,h4,h5,p,ul,ol{margin:0}
+ul,ol{padding:0;list-style:none}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--glacier);outline-offset:2px;border-radius:6px}
+.label{font:500 12px/1.45 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--brass)}
+h1,h2,h3{font-family:var(--display);font-weight:500;letter-spacing:-.015em;text-wrap:balance}
+h1 em,h2 em{font-style:italic;font-weight:400;color:var(--brass-hi)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:0;cursor:pointer;border-radius:999px;font-weight:500;text-decoration:none;white-space:nowrap;color:#fff;
+  background:radial-gradient(72% 95% at 50% 118%,rgba(201,168,115,.85) 0%,rgba(201,168,115,0) 100%),var(--navy);
+  box-shadow:inset 0 0 0 1px rgba(236,215,173,.34),0 16px 32px -18px rgba(0,0,0,.85);padding:12px 20px;font-size:15px;transition:transform .4s var(--ease),box-shadow .4s ease}
+.btn:hover{transform:translateY(-2px);box-shadow:inset 0 0 0 1px rgba(236,215,173,.7),0 20px 36px -16px rgba(138,106,62,.7)}
+.btn--white{color:var(--text);background:radial-gradient(72% 95% at 50% 122%,rgba(201,168,115,.45) 0%,rgba(201,168,115,0) 100%),var(--paper)}
+.btn--sm{padding:9px 16px;font-size:13px}
+.btn--ghost{background:transparent;box-shadow:inset 0 0 0 1px var(--hair-2);color:var(--pearl)}
+.btn--ghost:hover{box-shadow:inset 0 0 0 1px var(--glacier)}
+
+/* header */
+.top{position:sticky;top:0;z-index:40;background:rgba(5,11,20,.95);border-bottom:1px solid var(--hair);padding-top:env(safe-area-inset-top,0px)}
+.top-in{height:var(--hdr);max-width:1500px;margin-inline:auto;padding-inline:var(--gut);display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font:600 12px/1 var(--sans);letter-spacing:.26em;text-transform:uppercase;white-space:nowrap}
+.rose{width:16px;height:16px;fill:var(--brass);flex:none}
+.top .room{font:500 11px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--brass);white-space:nowrap}
+.top nav{display:flex;align-items:center;gap:22px}
+.top nav a.t{font-size:14px;color:var(--fog);text-decoration:none}
+.top nav a.t:hover{color:var(--pearl)}
+
+/* intro */
+.intro{padding-block:clamp(36px,5vw,64px) clamp(28px,4vw,44px);background:radial-gradient(120% 80% at 50% 120%,rgba(44,82,132,.5) 0%,rgba(13,28,46,0) 62%),linear-gradient(180deg,#03070d 0%,#081627 100%)}
+.intro .in{max-width:1500px;margin-inline:auto;padding-inline:var(--gut);display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:24px 48px;align-items:end}
+.intro h1{font-size:clamp(2.2rem,4.6vw,4rem);line-height:1.02;margin-top:14px}
+.intro .lead{color:var(--fog);margin-top:16px;max-width:38em}
+.intro .lead b{color:var(--pearl);font-weight:500}
+.intro .small-route{font-size:14px;margin-top:10px}
+.intro .small-route a{color:var(--brass-hi)}
+.privacy{display:flex;gap:12px;align-items:flex-start;padding:16px 18px;border:1px solid var(--hair-2);border-radius:16px;color:var(--fog);font-size:14px}
+.privacy svg{flex:none;width:20px;height:20px;stroke:var(--glacier);fill:none;margin-top:1px}
+.privacy b{color:var(--pearl);font-weight:500;display:block}
+
+/* workspace on lit ice */
+.ws{position:relative;isolation:isolate;padding-block:28px 64px;background:
+  linear-gradient(115deg,rgba(255,255,255,0) 0%,rgba(255,255,255,.16) 18%,rgba(255,255,255,0) 30%,rgba(255,255,255,0) 52%,rgba(255,255,255,.10) 64%,rgba(255,255,255,0) 76%),
+  linear-gradient(180deg,#effcff 0%,#c4f0ff 7%,#82defe 20%,#3fcbfb 40%,#18b4f1 64%,#0b95d8 86%,#0a82c4 100%)}
+.ice-wrap{position:absolute;inset:0;z-index:-1;pointer-events:none}
+.ice{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
+.ice i{position:absolute;display:block;mix-blend-mode:screen;will-change:transform}
+.ice .g1{width:95vw;height:85vh;left:-25vw;top:-25vh;background:radial-gradient(closest-side,rgba(255,255,255,.8),rgba(200,244,255,.38) 45%,rgba(200,244,255,0));animation:g1 16s ease-in-out infinite alternate}
+.ice .g2{width:85vw;height:75vh;right:-30vw;bottom:-30vh;background:radial-gradient(closest-side,rgba(130,230,255,.75),rgba(40,205,252,.3) 50%,rgba(40,205,252,0));animation:g2 21s ease-in-out infinite alternate}
+.ice .s1,.ice .s3{top:-70vh;left:0;height:240vh;transform:translateX(-80vw) rotate(24deg)}
+.ice .s1{width:40vw;background:linear-gradient(90deg,rgba(255,255,255,0) 30%,rgba(255,255,255,.6) 50%,rgba(255,255,255,0) 70%);animation:sweep 9s cubic-bezier(.45,0,.25,1) infinite}
+.ice .s3{width:2px;background:#f2feff;box-shadow:0 0 10px 3px rgba(170,240,255,.95),0 0 46px 14px rgba(60,210,255,.65);animation:sweep 11s cubic-bezier(.45,0,.25,1) -7.5s infinite}
+@keyframes g1{to{transform:translate(38vw,20vh) scale(1.15)}}
+@keyframes g2{to{transform:translate(-32vw,-16vh) scale(1.2)}}
+@keyframes sweep{0%{transform:translateX(-80vw) rotate(24deg)}62%,100%{transform:translateX(150vw) rotate(24deg)}}
+@media (prefers-reduced-motion:reduce){.ice i{animation:none!important}.ice .s1,.ice .s3{display:none}}
+.ws-in{max-width:1500px;margin-inline:auto;padding-inline:var(--gut);display:grid;grid-template-columns:minmax(0,500px) minmax(0,1fr);gap:28px;align-items:start}
+.tabs{display:none}
+
+/* editor: a royal-blue card */
+.ed{border-radius:22px;background:linear-gradient(160deg,var(--royal) 0%,var(--royal-2) 100%);color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.14),inset 0 -2px 0 rgba(150,235,255,.95),0 12px 26px -10px rgba(40,205,252,.85),0 24px 42px -24px rgba(6,24,43,.75);overflow:hidden}
+.check{padding:20px 22px;border-bottom:1px solid rgba(255,255,255,.12);background:rgba(5,11,20,.18)}
+.check .label{color:var(--glacier)}
+.check ul{display:grid;grid-template-columns:1fr 1fr;gap:6px 16px;margin-top:12px}
+.check li{display:flex;gap:8px;align-items:flex-start;font-size:13px;line-height:1.35;color:#c9d6e4}
+.check li i{flex:none;width:16px;height:16px;border-radius:50%;border:1px solid rgba(143,224,251,.6);display:grid;place-items:center;font-style:normal;font-size:10px;margin-top:1px}
+.check li.ok{color:#fff}
+.check li.ok i{background:var(--glacier);border-color:var(--glacier);color:var(--ink)}
+.check li.ok i::before{content:"✓"}
+.check .more{margin-top:12px;font-size:13px;color:#c9d6e4}
+.check .more a{color:var(--brass-hi)}
+.grp{border-bottom:1px solid rgba(255,255,255,.1)}
+.grp>summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 22px;cursor:pointer}
+.grp>summary::-webkit-details-marker{display:none}
+.grp>summary h2{font-size:1.25rem;line-height:1.2}
+.grp>summary h2 small{font:500 11px/1 var(--mono);letter-spacing:.14em;color:var(--glacier);margin-right:10px;vertical-align:.2em}
+.grp>summary::after{content:"";width:9px;height:9px;border-right:1.5px solid var(--glacier);border-bottom:1.5px solid var(--glacier);transform:rotate(45deg);transition:transform .35s var(--ease);margin-right:4px}
+.grp[open]>summary::after{transform:rotate(-135deg)}
+.grp .body{padding:0 22px 20px;display:grid;gap:12px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fl{display:grid;gap:5px;font-size:12.5px;color:#c9d6e4;min-width:0}
+.fl span{font:500 10.5px/1.3 var(--mono);letter-spacing:.12em;text-transform:uppercase}
+.in,.ta,.se{width:100%;border:1px solid rgba(255,255,255,.16);background:rgba(5,11,20,.32);border-radius:11px;padding:10px 12px;font-size:15px;color:#fff;outline:none;transition:border-color .25s,box-shadow .25s}
+.in::placeholder,.ta::placeholder{color:#8296ad}
+.in:focus,.ta:focus,.se:focus{border-color:var(--glacier);box-shadow:0 0 0 3px rgba(143,224,251,.22)}
+.ta{min-height:84px;resize:vertical;line-height:1.45}
+.se option{color:#000}
+.hint{font-size:12.5px;color:#c9d6e4}
+.warn{display:inline-flex;gap:6px;align-items:center;font-size:12px;color:var(--brass-hi)}
+.photo{display:flex;align-items:center;gap:14px}
+.photo .pv{width:64px;height:78px;border-radius:10px;border:1px dashed rgba(143,224,251,.6);overflow:hidden;flex:none;display:grid;place-items:center;font:500 9px/1.3 var(--mono);color:#8296ad;text-align:center}
+.photo .pv img{width:100%;height:100%;object-fit:cover}
+.photo label.btn{cursor:pointer}
+.photo input{position:absolute;opacity:0;width:1px;height:1px}
+.item{position:relative;padding:14px;border-radius:14px;background:rgba(5,11,20,.22);border:1px solid rgba(255,255,255,.1);display:grid;gap:10px}
+.item .rm{position:absolute;top:10px;right:10px;width:28px;height:28px;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:transparent;cursor:pointer;color:#c9d6e4;font-size:16px;line-height:1}
+.item .rm:hover{border-color:var(--brass);color:#fff}
+.item .n{font:500 10.5px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--glacier)}
+.add{justify-self:start;appearance:none;border:1px dashed rgba(143,224,251,.6);background:transparent;color:var(--glacier);border-radius:99px;padding:8px 14px;font-size:13px;cursor:pointer}
+.add:hover{background:rgba(143,224,251,.1)}
+.tick{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:#c9d6e4}
+.tick input{width:16px;height:16px;margin-top:2px;accent-color:var(--glacier)}
+
+/* preview */
+.pvw{position:sticky;top:calc(var(--hdr) + 16px)}
+.bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 16px;padding:12px 14px;border-radius:18px;background:rgba(5,11,20,.82);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);box-shadow:0 16px 30px -18px rgba(6,24,43,.8)}
+.bar .acts{display:flex;flex-wrap:wrap;gap:8px}
+.bar p{font-size:12.5px;color:var(--fog)}
+.bar p b{color:var(--pearl);font-weight:500}
+.stage{margin-top:14px;height:calc(100vh - var(--hdr) - 120px);height:calc(100svh - var(--hdr) - 120px);overflow:auto;border-radius:18px;padding:18px;background:rgba(255,255,255,.22);box-shadow:inset 0 0 0 1px rgba(255,255,255,.35)}
+.fit{transform-origin:0 0}
+
+/* the CV sheet: same in the preview and in the printed PDF */
+.sheet{width:210mm;min-height:297mm;background:#fff;color:#1a2433;padding:14mm 14mm 12mm;font:400 9.4pt/1.5 var(--sans);box-shadow:0 24px 60px -24px rgba(6,24,43,.65);border-radius:3px}
+.sheet .ph{color:#9aa5b4}
+.cv-top{display:grid;grid-template-columns:1fr 32mm;gap:6mm;padding-bottom:4mm;border-bottom:.6mm solid var(--navy)}
+.cv-top h1{font:600 25pt/1.02 var(--display);letter-spacing:-.01em;color:var(--navy)}
+.cv-top .role{font:500 8pt/1.35 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--brass-lo);margin-top:2mm}
+.cv-top .meta{font-size:9pt;color:#2a3746;margin-top:2.4mm;line-height:1.55}
+.cv-top .pic{width:32mm;height:40mm;border-radius:1.5mm;overflow:hidden;border:.3mm dashed #9aa4b2;display:grid;place-items:center;font:500 6.4pt/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:#8a95a5;text-align:center}
+.cv-top .pic.has{border:0}
+.cv-top .pic img{width:100%;height:100%;object-fit:cover}
+.sheet .target{margin-top:3.6mm;padding:2.4mm 3.2mm;background:var(--tint);font-size:9.2pt}
+.sheet .target b{font:500 6.6pt/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--navy);margin-right:2.4mm}
+.sheet h5{font:500 7pt/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-top:5.6mm;margin-bottom:2mm;break-after:avoid}
+.sheet p.tx{font-size:9.3pt;line-height:1.55;color:#2a3746}
+.sheet table{width:100%;border-collapse:collapse;font-size:8.8pt}
+.sheet th{font:500 6.2pt/1.3 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:#566273;text-align:left;padding:0 2mm 1.6mm 0;border-bottom:.35mm solid var(--navy)}
+.sheet td{padding:1.8mm 2mm 1.8mm 0;border-bottom:.25mm solid var(--line);vertical-align:top;line-height:1.4}
+.sheet tr{break-inside:avoid}
+.sheet tr.du td{padding-top:0;color:#3b4757;font-size:8.6pt}
+.sheet tr.has-du td{border-bottom:0}
+.sheet .tot td{font-weight:600;border-bottom:.35mm solid var(--navy)}
+.sheet .duo{display:grid;grid-template-columns:1fr 1fr;gap:7mm}
+.sheet ul.dot li{font-size:9pt;line-height:1.5;padding-left:3mm;position:relative;color:#2a3746}
+.sheet ul.dot li::before{content:"";position:absolute;left:0;top:1.9mm;width:1.1mm;height:1.1mm;border-radius:50%;background:var(--brass)}
+.sheet .made{margin-top:7mm;padding-top:2.4mm;border-top:.25mm solid var(--line);text-align:center;font:500 6.2pt/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:#9aa5b4}
+
+/* sheet with the white Audit card */
+.sheet-wrap{position:fixed;inset:0;z-index:60;display:grid;place-items:center;padding:16px}
+.scrim{position:absolute;inset:0;background:rgba(2,6,12,.66);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.modal{position:relative;width:min(560px,100%);max-height:calc(100dvh - 32px);overflow:auto;border-radius:24px;background:var(--night);border:1px solid var(--hair);padding:clamp(22px,4vw,34px);animation:pop .5s var(--ease)}
+@keyframes pop{from{opacity:0;transform:translateY(24px) scale(.98)}}
+.modal h2{font-size:clamp(1.6rem,3vw,2.2rem);line-height:1.08;margin-top:10px}
+.modal .lead{margin-top:10px;font-size:15px;color:var(--fog)}
+.modal .x{position:absolute;top:14px;right:14px;width:40px;height:40px;border-radius:50%;border:1px solid var(--hair-2);background:transparent;cursor:pointer;display:grid;place-items:center}
+.modal ol{margin-top:14px;display:grid;gap:8px;counter-reset:s}
+.modal ol li{display:grid;grid-template-columns:26px 1fr;gap:8px;font-size:14.5px;color:#dfe5ec}
+.modal ol li::before{counter-increment:s;content:counter(s);width:22px;height:22px;border-radius:50%;border:1px solid var(--glacier);color:var(--glacier);display:grid;place-items:center;font:500 11px/1 var(--mono)}
+.modal .go{margin-top:20px;display:flex;flex-wrap:wrap;gap:10px}
+.card{margin-top:20px;background:var(--paper);color:var(--text);border-radius:20px;padding:clamp(20px,3vw,28px)}
+.card .who{font:500 11px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--brass-lo)}
+.card h3{font-size:2rem;line-height:1;margin-top:8px}
+.card .pr{font:italic 400 1.15rem/1.3 var(--display);color:var(--brass-lo);margin-top:6px}
+.card ul{display:grid;gap:7px;margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
+.card li{display:grid;grid-template-columns:16px 1fr;gap:8px;font-size:14.5px;line-height:1.45}
+.card li::before{content:"";width:7px;height:7px;margin-top:7px;transform:rotate(45deg);background:var(--brass)}
+.card .buy{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 18px;margin-top:18px}
+.card .pc{font:400 2.8rem/1 var(--display)}
+.card .pc small{font:500 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--sub);margin-left:6px}
+.card .cur{font-family:var(--sans);font-size:.45em;vertical-align:.9em;margin-right:.1em}
+.card .after{margin-top:12px;font-size:13px;line-height:1.5;color:var(--sub)}
+.card .after b{color:var(--text);font-weight:600}
+.foot{padding-block:36px 48px;border-top:1px solid var(--hair);background:var(--ink)}
+.foot .in{max-width:1500px;margin-inline:auto;padding-inline:var(--gut);display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 32px;font-size:13px;color:var(--mute)}
+.foot .in b{color:var(--pearl);font-weight:500}
+
+#print-root{display:none}
+@media print{
+  @page{size:A4;margin:12mm 0}
+  html,body{background:#fff!important}
+  body>*:not(#print-root){display:none!important}
+  #print-root{display:block}
+  #print-root .sheet{width:auto;min-height:0;padding:0 14mm;box-shadow:none;border-radius:0}
+}
+
+@media (max-width:1100px){
+  .ws-in{grid-template-columns:minmax(0,1fr)}
+  .tabs{display:flex;gap:6px;position:sticky;top:calc(var(--hdr) + 8px);z-index:10;margin-bottom:14px;padding:5px;border-radius:99px;background:rgba(5,11,20,.85);width:max-content}
+  .tabs button{appearance:none;border:0;background:transparent;color:var(--fog);border-radius:99px;padding:8px 18px;font-size:14px;cursor:pointer}
+  .tabs button[aria-pressed="true"]{background:var(--pearl);color:var(--ink)}
+  .ws[data-view="edit"] .pvw{display:none}
+  .ws[data-view="preview"] .ed{display:none}
+  .pvw{position:static}
+  .stage{height:auto;max-height:none}
+  .intro .in{grid-template-columns:minmax(0,1fr)}
+  .top .room{display:none}
+}
+@media (max-width:640px){
+  .row2,.check ul{grid-template-columns:minmax(0,1fr)}
+  .top nav a.t{display:none}
+  .brand{letter-spacing:.16em;font-size:11px}
+  .hide-s{display:none}
+  .stage{padding:10px}
+}
+</style>
 </head>
-<body><p>Freelance Yachting has moved.<br><a href="https://aberaouni.github.io/freelance-yachting-services/chart-room/">Continue to the new page</a></p></body>
+<body>
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="./"><svg class="rose" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0l2.1 9.9L24 12l-9.9 2.1L12 24l-2.1-9.9L0 12l9.9-2.1z"/></svg><span>Freelance Yachting</span></a>
+    <span class="room">The Chart Room · CV workshop</span>
+    <nav aria-label="Main">
+                  <a class="btn btn--white btn--sm" href="https://www.paypal.com/ncp/payment/247GNB87BDHF2" target="_blank" rel="noopener"><span class="hide-s">The </span>Audit Room · €75</a>
+    </nav>
+  </div>
+</header>
+
+<section class="intro">
+  <div class="in">
+    <div>
+      <p class="label">The Chart Room · Free CV workshop</p>
+      <h1>The yacht CV, <em>built the way captains read.</em></h1>
+      <p class="lead">Starting out, or between contracts? Build your CV here, for free: fill in your details, watch your A4 CV take shape, save it as a PDF with real, searchable text. <b>The layout is free. The content is what the Audit fixes</b>, and when you want a verdict, the Audit starts from the CV you made here.</p>
+      <p class="lead small-route">New to yachting? <a href="https://www.paypal.com/ncp/payment/8J5Y6ZHB6M4EU" target="_blank" rel="noopener">THE ROUTE</a> maps the certificates you need next, in the right order, for €40.</p>
+    </div>
+    <div class="privacy">
+      <svg viewBox="0 0 24 24" stroke-width="1.6" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.4-7 10-4-1.6-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg>
+      <p><b>Everything stays on your device.</b>Nothing you type or upload is sent to Freelance Yachting. Your draft is saved in this browser only.</p>
+    </div>
+  </div>
+</section>
+
+<section class="ws" id="ws" data-view="edit">
+  <div class="ice-wrap" aria-hidden="true"><div class="ice"><i class="g1"></i><i class="g2"></i><i class="s1"></i><i class="s3"></i></div></div>
+  <div class="ws-in">
+    <div class="tabs" role="group" aria-label="View"><button type="button" data-view="edit" aria-pressed="true">Edit</button><button type="button" data-view="preview" aria-pressed="false">Preview</button></div>
+
+    <form class="ed" id="ed" autocomplete="off" onsubmit="return false">
+      <div class="check" aria-live="polite">
+        <p class="label">Quick check</p>
+        <ul id="checks"></ul>
+        <p class="more">A quick check is not an audit. When your CV is ready, send it to <a href="https://www.paypal.com/ncp/payment/247GNB87BDHF2" target="_blank" rel="noopener">The Audit Room</a>: we start from it, and people who know the 40&nbsp;m+ fleet give you a verdict.</p>
+      </div>
+
+      <details class="grp" open>
+        <summary><h2><small>01</small>You</h2></summary>
+        <div class="body">
+          <div class="photo">
+            <div class="pv" id="pv-photo">Photo</div>
+            <div style="display:grid;gap:8px">
+              <label class="btn btn--sm btn--ghost" for="f-photo">Add a professional photo</label>
+              <input type="file" id="f-photo" accept="image/png,image/jpeg">
+              <button type="button" class="add" id="rm-photo" hidden>Remove photo</button>
+            </div>
+          </div>
+          <label class="fl"><span>Full name</span><input class="in" data-k="name" placeholder="First name Last name"></label>
+          <div class="row2">
+            <label class="fl"><span>Nationality</span><input class="in" data-k="nationality" placeholder="French"></label>
+            <label class="fl"><span>Visas</span><input class="in" data-k="visas" placeholder="Schengen · US B1/B2"></label>
+          </div>
+          <div class="row2">
+            <label class="fl"><span>Based in</span><input class="in" data-k="based" placeholder="Antibes, France"></label>
+            <label class="fl"><span>Available</span><input class="in" data-k="available" placeholder="Immediately"></label>
+          </div>
+          <div class="row2">
+            <label class="fl"><span>Phone</span><input class="in" data-k="phone" placeholder="+33 6 00 00 00 00"></label>
+            <label class="fl"><span>Email</span><input class="in" data-k="email" type="email" placeholder="name@email.com"></label>
+          </div>
+          <label class="fl"><span>LinkedIn (optional)</span><input class="in" data-k="linkedin" placeholder="linkedin.com/in/your-name"></label>
+        </div>
+      </details>
+
+      <details class="grp" open>
+        <summary><h2><small>02</small>Target role</h2></summary>
+        <div class="body">
+          <label class="fl"><span>Position you want</span><input class="in" data-k="role" placeholder="Deckhand · Stewardess · Chef"></label>
+          <div class="row2">
+            <label class="fl"><span>Yacht size and type</span><input class="in" data-k="target" placeholder="40–60 m motor yacht"></label>
+            <label class="fl"><span>Cruising area</span><input class="in" data-k="area" placeholder="Mediterranean / worldwide"></label>
+          </div>
+          <label class="fl"><span>Profile, three lines</span><textarea class="ta" data-k="profile" placeholder="What you bring on board, your strongest experience, and the standard you work to."></textarea></label>
+        </div>
+      </details>
+
+      <details class="grp" open>
+        <summary><h2><small>03</small>Certificates</h2></summary>
+        <div class="body"><div id="g-certs" style="display:grid;gap:10px"></div><button type="button" class="add" data-add="certs">+ Add a certificate</button></div>
+      </details>
+
+      <details class="grp" open>
+        <summary><h2><small>04</small>Sea service</h2></summary>
+        <div class="body">
+          <div id="g-sea" style="display:grid;gap:10px"></div>
+          <button type="button" class="add" data-add="sea">+ Add a yacht</button>
+          <label class="fl"><span>Total sea service, in days</span><input class="in" data-k="seaTotal" inputmode="numeric" placeholder="From your signed testimonials, e.g. 420"></label>
+        </div>
+      </details>
+
+      <details class="grp">
+        <summary><h2><small>05</small>Other experience</h2></summary>
+        <div class="body"><div id="g-other" style="display:grid;gap:10px"></div><button type="button" class="add" data-add="other">+ Add an experience</button></div>
+      </details>
+
+      <details class="grp">
+        <summary><h2><small>06</small>Languages, skills, details</h2></summary>
+        <div class="body">
+          <label class="fl"><span>Languages</span><input class="in" data-k="languages" placeholder="English (fluent), French (native)"></label>
+          <label class="fl"><span>Skills</span><input class="in" data-k="skills" placeholder="Tender driving, varnishing, wine service, watersports"></label>
+          <div class="row2">
+            <label class="fl"><span>Smoker</span><select class="se" data-k="smoker"><option value="">Choose…</option><option>Non-smoker</option><option>Smoker</option></select></label>
+            <label class="fl"><span>Visible tattoos</span><select class="se" data-k="tattoos"><option value="">Choose…</option><option>No visible tattoos</option><option>Visible tattoos</option></select></label>
+          </div>
+          <div class="row2">
+            <label class="fl"><span>Driving licence</span><input class="in" data-k="licence" placeholder="Car (B)"></label>
+            <label class="fl"><span>Hobbies</span><input class="in" data-k="hobbies" placeholder="Diving, sailing, running"></label>
+          </div>
+        </div>
+      </details>
+
+      <details class="grp">
+        <summary><h2><small>07</small>Referees</h2></summary>
+        <div class="body"><div id="g-refs" style="display:grid;gap:10px"></div><button type="button" class="add" data-add="refs">+ Add a referee</button>
+          <label class="tick"><input type="checkbox" data-k="madeWith"> Keep the small “Made with the Freelance Yachting CV workshop” line at the bottom of the CV</label>
+        </div>
+      </details>
+    </form>
+
+    <div class="pvw">
+      <div class="bar">
+        <div class="acts">
+          <button type="button" class="btn btn--sm" id="save">Save as PDF</button>
+          <button type="button" class="btn btn--sm btn--ghost" id="sample">Load an example</button>
+          <button type="button" class="btn btn--sm btn--ghost" id="clear">Clear</button>
+        </div>
+        <p id="saved"><b>Draft saved</b> in this browser</p>
+      </div>
+      <div class="stage" id="stage"><div class="fit" id="fit"><article class="sheet" id="cv"></article></div></div>
+    </div>
+  </div>
+</section>
+
+<footer class="foot"><div class="in"><span><b>Freelance Yachting</b> · The Chart Room · free tools for yacht crew</span><span>Questions? contact@freelanceyachting.com</span></div></footer>
+
+<div class="sheet-wrap" id="modal" hidden>
+  <div class="scrim" data-close></div>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="m-t">
+    <button class="x" type="button" data-close aria-label="Close"><svg width="14" height="14" viewBox="0 0 14 14" stroke="#eef1f4" stroke-width="1.6" aria-hidden="true"><path d="M1 1l12 12M13 1L1 13"/></svg></button>
+    <div id="m-print">
+      <p class="label">Save as PDF</p>
+      <h2 id="m-t">One step, <em>then it’s yours.</em></h2>
+      <ol>
+        <li><span>A print window opens.</span></li>
+        <li><span>Choose <b>Save as PDF</b> as the destination (not a printer).</span></li>
+        <li><span>Keep the paper size on A4, and save.</span></li>
+      </ol>
+      <div class="go"><button type="button" class="btn" id="go-print">Open the print window</button><button type="button" class="btn btn--ghost" data-close>Back to my CV</button></div>
+    </div>
+    <div id="m-done" hidden>
+      <p class="label">Your layout is ready</p>
+      <h2>Would a captain read it <em>to the end?</em></h2>
+      <p class="lead">The layout is the easy part. Send the PDF you just saved to The Audit Room: we start from it, measure it against the standard the 40&nbsp;m+ fleet applies, then rebuild it by hand. Every date is verified against your own documents. Nothing is invented.</p>
+      <div class="card"><p class="who">For crew moving up</p><h3>The Audit Room</h3><p class="pr">Pass the first read.</p><ul><li>A ten-page confidential dossier, with your verdict scored out of 5 on five criteria</li><li>The Gaps &amp; Flaws report: what gets you filtered, and how we fix it</li><li>Every certificate checked: validity, expiry and gaps</li><li>Your CV rebuilt by hand, in PDF and editable Word, within 72 hours</li></ul><div class="buy"><p class="pc"><span class="cur">€</span>75<small>one-off</small></p><a class="btn" href="https://www.paypal.com/ncp/payment/247GNB87BDHF2" target="_blank" rel="noopener">Book your audit · €75</a></div><p class="after">Card, Apple Pay or PayPal, no PayPal account needed. After payment, send the CV you made here to <b>contact@freelanceyachting.com</b>, with your certificates and diplomas if you have them.</p></div>
+    </div>
+  </div>
+</div>
+
+<div id="print-root" aria-hidden="true"></div>
+
+<script>
+(function(){
+'use strict';
+var D=document,W=window;
+function $(s,el){return (el||D).querySelector(s)}
+function $$(s,el){return Array.prototype.slice.call((el||D).querySelectorAll(s))}
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+var KEY='fy-cv-workshop-v1';
+
+/* ---------- state ---------- */
+function blank(){return {photo:'',name:'',nationality:'',visas:'',based:'',available:'',phone:'',email:'',linkedin:'',role:'',target:'',area:'',profile:'',
+  certs:[{name:'STCW Basic Training (PST, FPFF, EFA, PSSR)',issuer:'',issued:'',expires:''},{name:'Proficiency in Security Awareness',issuer:'',issued:'',expires:'No expiry'},{name:'ENG1 seafarer medical',issuer:'',issued:'',expires:''}],
+  sea:[{vessel:'',length:'',type:'',role:'',from:'',to:'',area:'',duties:''}],seaTotal:'',
+  other:[{role:'',employer:'',dates:'',place:'',line:''}],languages:'',skills:'',smoker:'',tattoos:'',licence:'',hobbies:'',
+  refs:[{name:'',vessel:'',phone:'',email:''}],madeWith:true}}
+var SAMPLE={photo:'',name:'Alex Martin',nationality:'French',visas:'Schengen · US B1/B2',based:'Antibes, France',available:'Immediately',phone:'+33 6 00 00 00 00',email:'alex.martin@email.com',linkedin:'',
+  role:'Deckhand',target:'40–60 m motor yacht',area:'Mediterranean and Caribbean',
+  profile:'Deckhand with two seasons on 42–50 m yachts. Confident tender driver, careful with exterior finishes, calm under guest pressure. Sample text: replace it with your own.',
+  certs:[{name:'STCW Basic Training (PST, FPFF, EFA, PSSR)',issuer:'Sample school, Antibes',issued:'03/2024',expires:'PST, FPFF: 03/2029'},{name:'Proficiency in Security Awareness',issuer:'Sample school, Antibes',issued:'03/2024',expires:'No expiry'},{name:'ENG1 seafarer medical',issuer:'MCA-approved doctor',issued:'02/2026',expires:'02/2028'},{name:'Powerboat Level 2',issuer:'RYA',issued:'04/2024',expires:'No expiry'}],
+  sea:[{vessel:'M/Y Sample One',length:'50 m',type:'Motor · private',role:'Deckhand',from:'06/2025',to:'10/2026',area:'Med',duties:'Exterior maintenance and teak care, tender driving, mooring and anchoring, guest watersports.'},{vessel:'S/Y Sample Two',length:'42 m',type:'Sail · charter',role:'Junior deckhand',from:'11/2024',to:'05/2025',area:'Caribbean',duties:'Wash-downs, line handling, watchkeeping under supervision.'}],
+  seaTotal:'412',other:[{role:'Waiter',employer:'Sample hotel',dates:'2021–2024',place:'Nice',line:'Five-star service, discretion with VIP guests.'}],
+  languages:'English (fluent), French (native)',skills:'Tender driving, varnishing, watersports, line handling',smoker:'Non-smoker',tattoos:'No visible tattoos',licence:'Car (B)',hobbies:'Diving, sailing',
+  refs:[{name:'Captain J. Sample',vessel:'M/Y Sample One',phone:'+00 000 000 000',email:'captain@email.com'}],madeWith:true};
+var S=blank();
+try{var raw=localStorage.getItem(KEY);if(raw){var o=JSON.parse(raw);for(var k in S){if(o[k]!==undefined)S[k]=o[k]}}}catch(e){}
+var saveT=null;
+function save(){clearTimeout(saveT);saveT=setTimeout(function(){var ok=true;try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){ok=false}
+  $('#saved').innerHTML=ok?'<b>Draft saved</b> in this browser':'Draft not saved: this browser blocks storage';},300)}
+
+/* ---------- repeatable groups ---------- */
+var GROUPS={
+  certs:{box:'#g-certs',label:'Certificate',fields:[['name','Certificate','STCW Basic Training (PST, FPFF, EFA, PSSR)',1],['issuer','Issued by','School or authority'],['issued','Issued','MM/YYYY'],['expires','Valid until','MM/YYYY or No expiry']],make:function(){return {name:'',issuer:'',issued:'',expires:''}}},
+  sea:{box:'#g-sea',label:'Yacht',fields:[['vessel','Vessel','M/Y Name'],['length','Length','50 m'],['type','Type','Motor · private'],['role','Your role','Deckhand'],['from','From','MM/YYYY'],['to','To','MM/YYYY or present'],['area','Area','Mediterranean',1],['duties','Duties and one result','Two or three lines',1,'ta']],make:function(){return {vessel:'',length:'',type:'',role:'',from:'',to:'',area:'',duties:''}}},
+  other:{box:'#g-other',label:'Experience',fields:[['role','Role','Waiter'],['employer','Employer','Hotel, restaurant, marina'],['dates','Dates','2021–2024'],['place','Place','Nice'],['line','What transfers to yachting','One line',1]],make:function(){return {role:'',employer:'',dates:'',place:'',line:''}}},
+  refs:{box:'#g-refs',label:'Referee',fields:[['name','Name and rank','Captain J. Smith',1],['vessel','Vessel','M/Y Name'],['phone','Phone','+00 000 000 000'],['email','Email','captain@email.com']],make:function(){return {name:'',vessel:'',phone:'',email:''}}}
+};
+function renderGroup(g){
+  var G=GROUPS[g],box=$(G.box);box.innerHTML='';
+  S[g].forEach(function(item,i){
+    var div=D.createElement('div');div.className='item';
+    var html='<p class="n">'+G.label+' '+(i+1)+'</p><button type="button" class="rm" data-rm="'+g+'" data-i="'+i+'" aria-label="Remove '+G.label.toLowerCase()+' '+(i+1)+'">×</button>';
+    var row='';
+    G.fields.forEach(function(f){
+      var id='f-'+g+'-'+i+'-'+f[0];
+      var input=f[4]==='ta'?'<textarea class="ta" id="'+id+'" data-g="'+g+'" data-i="'+i+'" data-f="'+f[0]+'" placeholder="'+esc(f[2])+'">'+esc(item[f[0]])+'</textarea>'
+        :'<input class="in" id="'+id+'" data-g="'+g+'" data-i="'+i+'" data-f="'+f[0]+'" value="'+esc(item[f[0]])+'" placeholder="'+esc(f[2])+'">';
+      var cell='<label class="fl" for="'+id+'"><span>'+f[1]+'</span>'+input+'</label>';
+      if(f[3]){if(row){html+='<div class="row2">'+row+'</div>';row=''}html+=cell}
+      else{row+=cell;if((row.match(/class="fl"/g)||[]).length===2){html+='<div class="row2">'+row+'</div>';row=''}}
+    });
+    if(row)html+='<div class="row2">'+row+'</div>';
+    if(g==='certs'&&item.name&&!item.expires)html+='<p class="warn">◆ Add a validity date: captains look for it first.</p>';
+    div.innerHTML=html;box.appendChild(div);
+  });
+}
+function renderGroups(){Object.keys(GROUPS).forEach(renderGroup)}
+
+/* ---------- simple fields ---------- */
+function fillFields(){
+  $$('[data-k]',$('#ed')).forEach(function(el){var k=el.getAttribute('data-k');if(el.type==='checkbox')el.checked=!!S[k];else el.value=S[k]||''});
+  var pv=$('#pv-photo');pv.innerHTML=S.photo?'<img alt="" src="'+S.photo+'">':'Photo';$('#rm-photo').hidden=!S.photo;
+}
+$('#ed').addEventListener('input',function(e){
+  var t=e.target;
+  if(t.hasAttribute('data-k')){var k=t.getAttribute('data-k');S[k]=t.type==='checkbox'?t.checked:t.value}
+  else if(t.hasAttribute('data-g')){S[t.getAttribute('data-g')][+t.getAttribute('data-i')][t.getAttribute('data-f')]=t.value;
+    if(t.getAttribute('data-g')==='certs'&&(t.getAttribute('data-f')==='expires'||t.getAttribute('data-f')==='name')){var item=t.closest('.item'),w=$('.warn',item),it=S.certs[+t.getAttribute('data-i')];
+      if(it.name&&!it.expires&&!w){var p=D.createElement('p');p.className='warn';p.textContent='◆ Add a validity date: captains look for it first.';item.appendChild(p)}
+      if(w&&(!it.name||it.expires))w.remove()}}
+  else return;
+  preview();save();
+});
+$('#ed').addEventListener('change',function(e){if(e.target.tagName==='SELECT'||e.target.type==='checkbox'){var ev=new Event('input',{bubbles:true});e.target.dispatchEvent(ev)}});
+$('#ed').addEventListener('click',function(e){
+  var a=e.target.closest('[data-add]');if(a){var g=a.getAttribute('data-add');S[g].push(GROUPS[g].make());renderGroup(g);var last=$(GROUPS[g].box+' .item:last-child input, '+GROUPS[g].box+' .item:last-child textarea');if(last)last.focus();preview();save();return}
+  var r=e.target.closest('[data-rm]');if(r){var g2=r.getAttribute('data-rm');S[g2].splice(+r.getAttribute('data-i'),1);renderGroup(g2);preview();save()}
+});
+
+/* ---------- photo: resized in the browser, never uploaded ---------- */
+$('#f-photo').addEventListener('change',function(e){
+  var f=e.target.files&&e.target.files[0];if(!f)return;var rd=new FileReader();
+  rd.onload=function(){var im=new Image();im.onload=function(){var w=480,h=600,c=D.createElement('canvas');c.width=w;c.height=h;var x=c.getContext('2d');
+    var r=Math.max(w/im.width,h/im.height),dw=im.width*r,dh=im.height*r;x.drawImage(im,(w-dw)/2,(h-dh)/2,dw,dh);
+    S.photo=c.toDataURL('image/jpeg',.86);fillFields();preview();save()};im.src=rd.result};rd.readAsDataURL(f);e.target.value='';
+});
+$('#rm-photo').addEventListener('click',function(){S.photo='';fillFields();preview();save()});
+
+/* ---------- the CV ---------- */
+function v(x,ph){return x?esc(x):'<span class="ph">'+esc(ph)+'</span>'}
+function cvHTML(){
+  var meta=[];
+  meta.push('Nationality '+v(S.nationality,'[nationality]')+' · Visas '+v(S.visas,'[visas]')+' · Based in '+v(S.based,'[city, country]'));
+  meta.push(v(S.phone,'+00 000 000 000')+' · '+v(S.email,'name@email.com')+' · Available '+v(S.available,'[date]')+(S.linkedin?' · '+esc(S.linkedin):''));
+  var h='<div class="cv-top"><div><h1>'+v(S.name,'First name Last name')+'</h1><p class="role">'+v(S.role,'Target position')+'</p><p class="meta">'+meta.join('<br>')+'</p></div>'+
+    '<div class="pic'+(S.photo?' has':'')+'">'+(S.photo?'<img alt="" src="'+S.photo+'">':'Professional<br>photo')+'</div></div>';
+  h+='<p class="target"><b>Target</b>'+v(S.role,'[Role]')+' on a '+v(S.target,'[40–60 m motor yacht]')+' · '+v(S.area,'[cruising area]')+'</p>';
+  h+='<h5>Profile</h5><p class="tx">'+v(S.profile,'Three lines, written for this role: what you bring on board, your strongest experience, and the standard you work to.')+'</p>';
+  var certs=S.certs.filter(function(c){return c.name||c.issuer||c.issued||c.expires});
+  h+='<h5>Certificates</h5><table><tr><th style="width:46%">Certificate</th><th>Issued by</th><th>Issued</th><th>Valid until</th></tr>'+
+    (certs.length?certs.map(function(c){return '<tr><td>'+v(c.name,'[certificate]')+'</td><td>'+v(c.issuer,'[issuer]')+'</td><td>'+v(c.issued,'MM/YYYY')+'</td><td>'+v(c.expires,'MM/YYYY')+'</td></tr>'}).join(''):'<tr><td colspan="4"><span class="ph">Add your certificates</span></td></tr>')+'</table>';
+  var sea=S.sea.filter(function(s){return s.vessel||s.length||s.role||s.from});
+  h+='<h5>Sea service</h5><table><tr><th>Vessel</th><th>Length</th><th>Type</th><th>Role</th><th>Dates</th><th>Area</th></tr>';
+  if(sea.length)sea.forEach(function(s){var du=s.duties?'<tr class="du"><td colspan="6">'+esc(s.duties)+'</td></tr>':'';
+    h+='<tr'+(du?' class="has-du"':'')+'><td>'+v(s.vessel,'M/Y [name]')+'</td><td>'+v(s.length,'00 m')+'</td><td>'+v(s.type,'[type]')+'</td><td>'+v(s.role,'[role]')+'</td><td>'+v(s.from,'MM/YYYY')+'–'+v(s.to,'MM/YYYY')+'</td><td>'+v(s.area,'[area]')+'</td></tr>'+du});
+  else h+='<tr><td colspan="6"><span class="ph">Add the yachts you have worked on, most recent first</span></td></tr>';
+  h+='<tr class="tot"><td colspan="4">Total sea service</td><td colspan="2">'+(S.seaTotal?esc(S.seaTotal)+' days':'<span class="ph">[number] days</span>')+'</td></tr></table>';
+  var oth=S.other.filter(function(o){return o.role||o.employer});
+  if(oth.length){h+='<h5>Other experience</h5><ul class="dot">'+oth.map(function(o){return '<li><b>'+v(o.role,'[role]')+'</b> · '+v(o.employer,'[employer]')+' · '+v(o.dates,'[dates]')+(o.place?' · '+esc(o.place):'')+(o.line?'. '+esc(o.line):'')+'</li>'}).join('')+'</ul>'}
+  var det=[S.smoker,S.tattoos,S.licence?'Driving licence: '+S.licence:'',S.hobbies?'Hobbies: '+S.hobbies:''].filter(Boolean);
+  h+='<div class="duo"><div><h5>Languages and skills</h5><ul class="dot"><li>'+v(S.languages,'English [level] · French [level]')+'</li><li>'+v(S.skills,'Your key skills')+'</li></ul></div>'+
+     '<div><h5>Personal details</h5><ul class="dot">'+(det.length?det.map(function(d){return '<li>'+esc(d)+'</li>'}).join(''):'<li><span class="ph">Non-smoker · No visible tattoos · Driving licence</span></li>')+'</ul></div></div>';
+  var refs=S.refs.filter(function(r){return r.name||r.vessel||r.phone||r.email});
+  h+='<h5>Referees</h5>'+(refs.length?'<ul class="dot">'+refs.map(function(r){return '<li>'+[esc(r.name),r.vessel?esc(r.vessel):'',esc(r.phone),esc(r.email)].filter(Boolean).join(' · ')+'</li>'}).join('')+'</ul>':'<p class="tx"><span class="ph">Captain [name], M/Y [name] · +00 000 000 000 · captain@email.com</span></p>');
+  if(S.madeWith)h+='<p class="made">Made with the Freelance Yachting CV workshop</p>';
+  return h;
+}
+function checks(){
+  var certs=S.certs.filter(function(c){return c.name});
+  var sea=S.sea.filter(function(s){return s.vessel||s.role});
+  var list=[
+    ['A target role and yacht size',!!(S.role&&S.target)],
+    ['Every certificate has a validity date',certs.length>0&&certs.every(function(c){return c.expires})],
+    ['Sea service with lengths and dates',sea.length>0&&sea.every(function(s){return s.length&&s.from&&s.to})],
+    ['Total sea service in days',!!S.seaTotal],
+    ['A professional photo',!!S.photo],
+    ['Smoker and tattoo details',!!(S.smoker&&S.tattoos)]
+  ];
+  $('#checks').innerHTML=list.map(function(c){return '<li class="'+(c[1]?'ok':'')+'"><i></i>'+c[0]+'</li>'}).join('');
+}
+var cv=$('#cv'),fit=$('#fit'),stage=$('#stage');
+function scale(){var w=stage.clientWidth-parseFloat(getComputedStyle(stage).paddingLeft)*2,s=Math.min(1,w/cv.offsetWidth);fit.style.transform='scale('+s.toFixed(4)+')';fit.style.width=cv.offsetWidth+'px';fit.style.height=(cv.offsetHeight*s)+'px'}
+function preview(){cv.innerHTML=cvHTML();checks();scale()}
+W.addEventListener('resize',scale);
+
+/* ---------- actions ---------- */
+$('#sample').addEventListener('click',function(){S=JSON.parse(JSON.stringify(SAMPLE));fillFields();renderGroups();preview();save()});
+var clearArmed=false;
+$('#clear').addEventListener('click',function(e){var b=e.currentTarget;
+  if(!clearArmed){clearArmed=true;b.textContent='Tap again to clear';setTimeout(function(){clearArmed=false;b.textContent='Clear'},3000);return}
+  clearArmed=false;b.textContent='Clear';S=blank();fillFields();renderGroups();preview();save()});
+$$('.tabs button').forEach(function(b){b.addEventListener('click',function(){var vw=b.getAttribute('data-view');$('#ws').setAttribute('data-view',vw);$$('.tabs button').forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});if(vw==='preview')scale()})});
+
+var modal=$('#modal'),lastF=null,printed=false;
+function openM(step){lastF=D.activeElement;modal.hidden=false;D.body.classList.add('locked');$('#m-print').hidden=step!=='print';$('#m-done').hidden=step!=='done';setTimeout(function(){var f=$(step==='print'?'#go-print':'.x');if(f)f.focus()},60)}
+function closeM(){modal.hidden=true;D.body.classList.remove('locked');if(lastF)lastF.focus()}
+modal.addEventListener('click',function(e){if(e.target.closest('[data-close]'))closeM()});
+D.addEventListener('keydown',function(e){if(e.key==='Escape'&&!modal.hidden)closeM()});
+$('#save').addEventListener('click',function(){openM('print')});
+$('#go-print').addEventListener('click',function(){closeM();printed=true;setTimeout(function(){W.print()},60)});
+W.addEventListener('beforeprint',function(){$('#print-root').innerHTML='<article class="sheet">'+cvHTML()+'</article>'});
+W.addEventListener('afterprint',function(){if(printed){printed=false;setTimeout(function(){openM('done')},300)}});
+
+fillFields();renderGroups();preview();
+if(D.fonts&&D.fonts.ready)D.fonts.ready.then(scale);
+})();
+</script>
+</body>
 </html>
